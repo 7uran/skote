@@ -6,6 +6,8 @@ module.exports = {
       colors: {
         elementsColor: '#2A3042',
         bodyColor: '#222736',
+        textColor: "#A6B0CF",
+        borderColor: "rgb(50,57,78)",
       },
       keyframes: {
         notification: {
