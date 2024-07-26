@@ -19,15 +19,15 @@ const Sidebar = ({ isOpen }) => {
       </div>
       <div>
         <ul className='px-6 flex flex-col gap-5'>
+          <li className='text-gray-500 text-xs'>MENU</li>
           <li className='group'>
             <div className='flex items-center justify-between group-hover:text-white cursor-pointer' onClick={() => toggleSection('Dashboards')}>
 
-              <div className='flex items-center gap-2 text-gray-400 group-hover:text-white transition'><BiHomeCircle /> <p>Dashboards</p></div>
-              <div className='text-gray-400 group-hover:text-white transition'><IoIosArrowDown /></div>
+              <div className='flex items-center gap-2 text-gray-500 group-hover:text-white transition'><BiHomeCircle /> <p className='text-sm'>Dashboards</p></div>
+              <div className='text-gray-500 group-hover:text-white transition'><IoIosArrowDown /></div>
             </div>
             {activeSection === 'Dashboards' && (
-              <div className='transition-all duration-300 overflow-hidden text-gray-400 py-2 text-xs flex flex-col gap-2'>
-
+              <div className='transition-all duration-300 overflow-hidden text-gray-500 py-2 text-xs flex flex-col gap-2'>
                 <p className='hover:text-white transition ml-6 cursor-pointer'>Default</p>
                 <p className='hover:text-white transition ml-6 cursor-pointer'>Saas</p>
                 <p className='hover:text-white transition ml-6 cursor-pointer'>Crypto</p>
@@ -36,10 +36,10 @@ const Sidebar = ({ isOpen }) => {
               </div>
             )}
           </li>
-
+          <li className='text-gray-500 text-xs'>APPS</li>
           <li className='group'>
             <div className='flex items-center justify-between group-hover:text-white cursor-pointer' >
-              <div className='flex items-center gap-2 text-gray-400 group-hover:text-white transition'><FaCalendarAlt /><p>Calendar</p></div>
+              <div className='flex items-center gap-2 text-gray-500 group-hover:text-white transition'><FaCalendarAlt /><p className='text-sm'>Calendar</p></div>
 
             </div>
 
@@ -47,7 +47,7 @@ const Sidebar = ({ isOpen }) => {
 
           <li className='group'>
             <div className='flex items-center justify-between group-hover:text-white cursor-pointer' >
-              <div className='flex items-center gap-2 text-gray-400 group-hover:text-white transition'><BiSolidChat /> <p>Chat</p></div>
+              <div className='flex items-center gap-2 text-gray-500 group-hover:text-white transition'><BiSolidChat /> <p className='text-sm'>Chat</p></div>
 
             </div>
 
@@ -55,7 +55,7 @@ const Sidebar = ({ isOpen }) => {
 
           <li className='group'>
             <div className='flex items-center justify-between group-hover:text-white cursor-pointer' >
-              <div className='flex items-center gap-2 text-gray-400 group-hover:text-white transition'><FaRegFileLines /> <p>File</p></div>
+              <div className='flex items-center gap-2 text-gray-500 group-hover:text-white transition'><FaRegFileLines /> <p className='text-sm'>File Manager</p></div>
             </div>
 
           </li>

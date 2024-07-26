@@ -1,0 +1,69 @@
+{
+  "job-list": [
+    {
+      "id": "a645",
+      "jobId": "4444444",
+      "jobTitle": "asdasd",
+      "companyName": "asdad",
+      "location": "asdads",
+      "experience": "asdasd",
+      "position": "asdads",
+      "type": "Freelance",
+      "postedDate": "25 June 2021",
+      "lastDate": "28 June 2021",
+      "status": "Close"
+    },
+    {
+      "id": "c338",
+      "jobId": "4444444",
+      "jobTitle": "asdasd",
+      "companyName": "asdad",
+      "location": "asdads",
+      "experience": "asdasd",
+      "position": "asdads",
+      "type": "Part Time",
+      "postedDate": "25 June 2021",
+      "lastDate": "28 June 2021",
+      "status": "Close"
+    },
+    {
+      "id": "9e11",
+      "jobId": "4444444",
+      "jobTitle": "asdasd",
+      "companyName": "asdad",
+      "location": "asdads",
+      "experience": "asdasd",
+      "position": "asdads",
+      "type": "Full Time",
+      "postedDate": "25 June 2021",
+      "lastDate": "28 June 2021",
+      "status": "Close"
+    },
+    {
+      "id": "4f27",
+      "jobId": "4444444",
+      "jobTitle": "asdasd",
+      "companyName": "asdad",
+      "location": "asdads",
+      "experience": "asdasd",
+      "position": "asdads",
+      "type": "Full Time",
+      "postedDate": "25 June 2021",
+      "lastDate": "28 June 2021",
+      "status": "Active"
+    },
+    {
+      "id": "fae9",
+      "jobId": "333",
+      "jobTitle": "asdad",
+      "companyName": "sasda",
+      "location": "dasd",
+      "experience": "asdas",
+      "position": "dasd",
+      "type": "Full Time",
+      "postedDate": "25 June 2021",
+      "lastDate": "28 June 2021",
+      "status": "Active"
+    }
+  ]
+}
