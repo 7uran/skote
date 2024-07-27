@@ -4,6 +4,8 @@ import { BiHomeCircle } from "react-icons/bi";
 import { FaCalendarAlt } from "react-icons/fa";
 import { BiSolidChat } from "react-icons/bi";
 import { FaRegFileLines } from "react-icons/fa6";
+import { LuBriefcase } from "react-icons/lu";
+import { Link } from 'react-router-dom';
 const Sidebar = ({ isOpen }) => {
   const [activeSection, setActiveSection] = useState(null);
 
@@ -58,6 +60,21 @@ const Sidebar = ({ isOpen }) => {
               <div className='flex items-center gap-2 text-gray-500 group-hover:text-white transition'><FaRegFileLines /> <p className='text-sm'>File Manager</p></div>
             </div>
 
+          </li>
+
+          <li className='group'>
+            <div className='flex items-center justify-between group-hover:text-white cursor-pointer' onClick={() => toggleSection('Jobs')}>
+
+              <div className='flex items-center gap-2 text-gray-500 group-hover:text-white transition'><LuBriefcase /> <p className='text-sm'>Jobs</p></div>
+              <div className='text-gray-500 group-hover:text-white transition'><IoIosArrowDown /></div>
+            </div>
+            {activeSection === 'Jobs' && (
+              <div className='transition-all duration-300 overflow-hidden text-gray-500 py-2 text-xs flex flex-col gap-2'>
+                <Link to='/job-list' className='hover:text-white transition ml-6 cursor-pointer'>Job List</Link>
+                <Link to='/job-grid' className='hover:text-white transition ml-6 cursor-pointer'>Job Grid</Link>
+              </div>
+
+            )}
           </li>
         </ul>
       </div>

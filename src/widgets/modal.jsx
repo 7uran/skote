@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import axios from 'axios';
-import useSWR, { mutate } from 'swr';
-import { fetcher } from '../services/api';
+import { mutate } from 'swr';
+import { useDropzone } from 'react-dropzone';
+import { FaUpload } from "react-icons/fa";
 
 const Modal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [formData, setFormData] = useState({
         jobId: '',
         jobTitle: '',
+        jobImg: '',
         companyName: '',
         location: '',
         experience: '',
@@ -19,7 +21,6 @@ const Modal = () => {
     });
 
     const BASE_URL = "http://localhost:3002/job-list";
-    const { data, error } = useSWR(BASE_URL, fetcher);
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -27,6 +28,18 @@ const Modal = () => {
             ...formData,
             [id]: value
         });
+    };
+
+    const handleDrop = (acceptedFiles) => {
+        const file = acceptedFiles[0];
+        const reader = new FileReader();
+        reader.onload = () => {
+            setFormData({
+                ...formData,
+                jobImg: reader.result
+            });
+        };
+        reader.readAsDataURL(file);
     };
 
     const handleSubmit = async (e) => {
@@ -43,6 +56,8 @@ const Modal = () => {
     const toggleModal = () => {
         setIsOpen(!isOpen);
     };
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop: handleDrop });
 
     return (
         <>
@@ -238,6 +253,30 @@ const Modal = () => {
                                         <option className='bg-elementsColor' value="New">New</option>
                                         <option className='bg-elementsColor' value="Close">Close</option>
                                     </select>
+                                </div>
+
+                                <div className='py-1 flex flex-col gap-3'>
+                                    <label
+                                        htmlFor="jobImg"
+                                        className="block text-sm font-medium text-textColor flex items-center gap-2"
+                                    >
+                                        Job Image <FaUpload />
+
+                                    </label>
+                                    <div
+                                        {...getRootProps()}
+                                        className={`bg-transparent border border-gray-600 text-white text-xs rounded block w-full p-2.5 cursor-pointer ${isDragActive ? 'bg-gray-700' : ''}`}
+                                    >
+                                        <input {...getInputProps()} />
+                                        {isDragActive ? (
+                                            <p>Drop the files here ... </p>
+                                        ) : (
+                                            <p>Drag & Drop some files here, or click to select files</p>
+                                        )}
+                                    </div>
+                                    {formData.jobImg && (
+                                        <img src={formData.jobImg} alt="Job" className="mt-2 max-h-48 object-contain" />
+                                    )}
                                 </div>
 
                                 <div className="flex justify-end gap-4 mt-4">

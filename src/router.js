@@ -1,5 +1,4 @@
-// router.js
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import ErrorBoundary from './featured/ErrorBoundary';
 import HomePage from './pages/home';
 import JobGridPage from './pages/job-grid';
@@ -11,12 +10,16 @@ const router = createBrowserRouter([
         element: <Layout />,
         children: [
             {
-                path: "/",
+                path: "/job-list",
                 element: <HomePage />
             },
             {
                 path: "/job-grid",
                 element: <JobGridPage />
+            },
+            {
+                index: true,
+                element: <Navigate to="/job-list" replace />
             }
         ]
     },
