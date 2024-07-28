@@ -5,6 +5,7 @@ import { IoEye } from "react-icons/io5";
 import { FaPen } from "react-icons/fa";
 import { PiTrashSimpleLight } from "react-icons/pi";
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Table = () => {
     const { data, error } = useSWR('http://localhost:3002/job-list', fetcher);
@@ -56,8 +57,10 @@ const Table = () => {
         try {
             await axios.delete(`http://localhost:3002/job-list/${id}`);
             mutate('http://localhost:3002/job-list');
+            toast.success('Job deleted successfully!');
         } catch (error) {
             console.error(error);
+            toast.error('Error deleting job');
         }
     };
 

@@ -3,6 +3,8 @@ import axios from 'axios';
 import { mutate } from 'swr';
 import { useDropzone } from 'react-dropzone';
 import { FaUpload } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Modal = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -47,8 +49,10 @@ const Modal = () => {
         try {
             await axios.post(BASE_URL, formData);
             mutate(BASE_URL);
+            toast.success('Job posted successfully!')
             setIsOpen(false);
         } catch (error) {
+            toast.error('Error posting job!')
             console.error('Error:', error);
         }
     };
@@ -228,7 +232,6 @@ const Modal = () => {
                                         value={formData.type}
                                         onChange={handleChange}
                                     >
-
                                         <option className='bg-elementsColor' value="Full Time">Full Time</option>
                                         <option className='bg-elementsColor' value="Part Time">Part Time</option>
                                         <option className='bg-elementsColor' value="Freelance">Freelance</option>
@@ -248,7 +251,6 @@ const Modal = () => {
                                         value={formData.status}
                                         onChange={handleChange}
                                     >
-
                                         <option className='bg-elementsColor' value="Active">Active</option>
                                         <option className='bg-elementsColor' value="New">New</option>
                                         <option className='bg-elementsColor' value="Close">Close</option>
@@ -261,7 +263,6 @@ const Modal = () => {
                                         className="block text-sm font-medium text-textColor flex items-center gap-2"
                                     >
                                         Job Image <FaUpload />
-
                                     </label>
                                     <div
                                         {...getRootProps()}
@@ -292,6 +293,7 @@ const Modal = () => {
                     </div>
                 </div>
             )}
+            <ToastContainer />
         </>
     );
 };
