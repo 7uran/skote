@@ -1,13 +1,11 @@
 import React from 'react';
-import useSWR, { mutate } from 'swr';
-import { fetcher } from '../../services/api';
+import useSWR from 'swr';
+import { fetcher, handleDelete } from '../../services/api';
 import { IoEye } from "react-icons/io5";
 import { FaPen } from "react-icons/fa";
 import { PiTrashSimpleLight } from "react-icons/pi";
-import axios from 'axios';
-import { toast } from 'react-toastify';
 
-const Table = () => {
+const Table = ({ searchTerm, statusFilter, typeFilter }) => {
     const { data, error } = useSWR('http://localhost:3002/job-list', fetcher);
 
     const getTypeStyles = (type) => {
@@ -53,24 +51,22 @@ const Table = () => {
         }
     };
 
-    const handleDelete = async (id) => {
-        try {
-            await axios.delete(`http://localhost:3002/job-list/${id}`);
-            mutate('http://localhost:3002/job-list');
-            toast.success('Job deleted successfully!');
-        } catch (error) {
-            console.error(error);
-            toast.error('Error deleting job');
-        }
-    };
-
     if (error) return <div>Error loading data</div>;
     if (!data) return <div className='flex justify-center items-center min-h-screen'><div className='spinner'></div></div>;
+
+    const filteredData = data
+        .filter(job =>
+            job.jobTitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            job.companyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            job.location.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        .filter(job => statusFilter === '' || job.status === statusFilter)
+        .filter(job => typeFilter === '' || job.type === typeFilter);
 
     return (
         <div className='px-4 py-6'>
             <table className='w-full'>
-                <thead className=''>
+                <thead>
                     <tr className='text-left w-full text-textColor text-sm border-y-2 border-y-borderColor'>
                         <th className='p-3'>No</th>
                         <th className='p-3'>Job Image</th>
@@ -87,7 +83,7 @@ const Table = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((job, index) => {
+                    {filteredData.map((job, index) => {
                         const { bgColor, textColor } = getTypeStyles(job.type);
                         const statusBgColor = getStatusStyles(job.status);
                         return (

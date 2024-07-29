@@ -6,6 +6,21 @@ import Table from '../components/table/table';
 
 const HomePage = () => {
     const [inputType, setInputType] = useState('text');
+    const [searchTerm, setSearchTerm] = useState('');
+    const [statusFilter, setStatusFilter] = useState('');
+    const [typeFilter, setTypeFilter] = useState('');
+
+    const handleStatusChange = (event) => {
+        setStatusFilter(event.target.value);
+    };
+
+    const handleTypeChange = (event) => {
+        setTypeFilter(event.target.value);
+    };
+
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
 
     return (
         <div className='w-full p-6 text-white flex flex-col gap-4 min-h-screen'>
@@ -32,20 +47,32 @@ const HomePage = () => {
                         <option>Show 40</option>
                         <option>Show 50</option>
                     </select>
-                    <input placeholder='Search for...' className='w-[35%] text-white bg-elementsColor border rounded border-borderColor text-xs p-2' />
-                    <select className='w-[15%] text-white bg-elementsColor border rounded border-borderColor text-xs p-2'>
-                        <option value="" disabled defaultValue>Status</option>
-                        <option>All</option>
-                        <option>Active</option>
-                        <option>New</option>
-                        <option>Close</option>
+                    <input 
+                        placeholder='Search for...' 
+                        className='w-[35%] text-white bg-elementsColor border rounded border-borderColor text-xs p-2' 
+                        value={searchTerm} 
+                        onChange={handleSearchChange} 
+                    />
+                    <select 
+                        className='w-[15%] text-white bg-elementsColor border rounded border-borderColor text-xs p-2'
+                        onChange={handleStatusChange}
+                        value={statusFilter}
+                    >
+                        <option value="">All</option>
+                        <option value="Active">Active</option>
+                        <option value="New">New</option>
+                        <option value="Close">Close</option>
                     </select>
-                    <select className='w-[15%] text-white bg-elementsColor border rounded border-borderColor text-xs p-2'>
-                        <option value="" disabled defaultValue>Select Type</option>
-                        <option>All</option>
-                        <option>Full Time</option>
-                        <option>Part Time</option>
-                        <option>Freelance</option>
+                    <select 
+                        className='w-[15%] text-white bg-elementsColor border rounded border-borderColor text-xs p-2'
+                        onChange={handleTypeChange}
+                        value={typeFilter}
+                    >
+                        <option value="">Select Type</option>
+                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time">Part Time</option>
+                        <option value="Freelance">Freelance</option>
+                        <option value="Internship">Internship</option>
                     </select>
                     <input
                         placeholder='Select time'
@@ -56,7 +83,7 @@ const HomePage = () => {
                     />
                 </div>
 
-                <Table />
+                <Table searchTerm={searchTerm} statusFilter={statusFilter} typeFilter={typeFilter} />
             </div>
         </div>
     );
